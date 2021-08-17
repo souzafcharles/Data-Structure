@@ -1,3 +1,11 @@
+
+/*
+Class title: Data Structure
+Lecturer: Prof. Dr. Rodrigo Elias Bianchi
+Example adapted by: Charles Fernandes de Souza
+Date: August 10, 2021
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
