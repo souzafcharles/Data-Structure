@@ -42,6 +42,7 @@ void imprimeRecursivo(No *ponteiro){
 }
 
 int main() {
+    
     struct No {
         int informacao;
         struct No *proximo;
