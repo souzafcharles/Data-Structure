@@ -56,7 +56,7 @@ No *buscaRecursivo(No *ponteiro, int item){
     return buscaRecursivo(ponteiro->proximo, item);
 }
 
-void removeElemento(No *ponteiro){
+void remove(No *ponteiro){
     No *ponteiroAcesso;
     ponteiroAcesso = ponteiro->proximo;
     ponteiro->proximo = ponteiroAcesso->proximo;
@@ -81,7 +81,7 @@ int main() {
 
     imprime(inicio);
 
-    removeElemento(inicio);
+    remove(inicio);
 
     imprimeRecursivo(inicio);
 
