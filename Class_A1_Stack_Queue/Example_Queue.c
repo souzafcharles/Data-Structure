@@ -1,4 +1,3 @@
-
 /*
 Class title: Data Structure
 Lecturer: Prof. Dr. Rodrigo Elias Bianchi
