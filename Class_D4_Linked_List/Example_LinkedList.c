@@ -25,7 +25,6 @@ void insere(NoD *ponteiro, int item) {
     ponteiro->proximo = novoNo;
 }
 
-
 void imprime(NoD *inicio) {
     NoD *ponteiro;
     ponteiro = inicio;
@@ -64,7 +63,6 @@ void remove(NoD *ponteiroAcesso) {
     if (ponteiroAcesso->proximo) ponteiroAcesso->proximo->anterior = ponteiro;
     free(ponteiroAcesso);
 }
-
 
 int main() {
 
