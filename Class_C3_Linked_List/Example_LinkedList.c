@@ -41,7 +41,6 @@ void imprimeRecursivo(No *ponteiro){
     printf("\n");
 }
 
-
 No *busca(No *inicio, int item){
     No *ponteiro = inicio;
     while (ponteiro && ponteiro->informacao != item){
