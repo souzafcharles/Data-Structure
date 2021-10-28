@@ -316,7 +316,7 @@ int main(void) {
 
     while (opcao!=0){
         
-		printf("\n\n------------- MENU MUSICA PLAYER --------------\n\n");
+	printf("\n\n------------- MENU MUSICA PLAYER --------------\n\n");
         printf ("Digite o numero [1] para inserir musica\n");
         printf ("Digite o numero [2] para listar musicas\n");
         printf ("Digite o numero [3] para criar uma playlist\n");
