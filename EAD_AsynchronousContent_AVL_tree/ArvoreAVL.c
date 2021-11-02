@@ -1,3 +1,10 @@
+/*
+Class title: Data Structure
+Lecturer: Prof. Dr. Rodrigo Elias Bianchi
+Exercise by: Charles Fernandes de Souza
+Date: November 01, 2021
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "ArvoreAVL.h" //inclui os Protótipos
