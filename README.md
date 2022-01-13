@@ -23,6 +23,7 @@
 - EAD Asynchronous Content: [AVL tree](https://github.com/souzafcharles/Data-Structure/tree/master/EAD_AsynchronousContent_AVL_tree)
 
 - Subject Work: [Part 01](https://github.com/souzafcharles/Data-Structure/tree/master/Subjectwork_Part_01)
+- Subject Work: [Part 02](https://github.com/souzafcharles/Data-Structure/tree/master/Subjectwork_Part_02)
 
 
 ### :link: [ADS Course Information Access](https://scl.ifsp.edu.br/index.php/cursos.html?id=116:ads&catid=61)
