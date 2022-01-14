@@ -7,85 +7,106 @@ Date: October 26, 2021
 
 #include<stdio.h>
 #include <stdlib.h>
-#define true 1;
-#define false 0;
 
-typedef struct adjacencia{
-    int vertice; 
-    int peso; 
-    struct adjacencia *proximo; 
-}Adjacencia;
+typedef struct No {
+    int v;
+    struct No *prox;
+} No;
 
-typedef struct vertice{
-    Adjacencia *noCabeca;  
-}Vertice;
+typedef struct {
+    No **adjacencia;
+    int n;
+} Grafo;
 
-typedef struct grafo{
-    int vertices; 
-    int arestas; 
-    Vertice *ponteiroAdjacencia; 
-}Grafo;
+void inicia_grafo(Grafo *g, int n);
 
-Grafo *insereGrafo(int valorVertice){
-    int index;
-    Grafo *ponteiroGrafo = (Grafo*)malloc(sizeof(Grafo)); 
-    ponteiroGrafo->vertices = valorVertice; 
-    ponteiroGrafo->arestas = 0;  
-    ponteiroGrafo->ponteiroAdjacencia = (Vertice*)malloc(valorVertice*sizeof(Vertice));
-    for(index= 0;index < valorVertice; index++){
-        ponteiroGrafo->ponteiroAdjacencia[index].noCabeca = NULL; 
-    }
-    return ponteiroGrafo;
+void destroi_grafo(Grafo g);
+
+void insere_aresta(Grafo g, int u, int v);
+
+void remove_aresta(Grafo g, int u, int v);
+
+int tem_aresta(Grafo g, int u, int v);
+
+void imprime_arestas(Grafo g);
+
+void inicia_grafo(Grafo *g, int n) {
+    int i;
+    g->n = n;
+    g->adjacencia = malloc(n * sizeof(No *));
+    for (i = 0; i < n; i++)
+        g->adjacencia[i] = NULL;
 }
 
-Adjacencia *insereAdjacencia(int valorVertice,int peso){
-    Adjacencia *ponteiroAdjacencia = (Adjacencia*)malloc(sizeof(Adjacencia));
-    ponteiroAdjacencia->vertice = valorVertice;  
-    ponteiroAdjacencia->peso = peso;  
-    ponteiroAdjacencia->proximo = NULL;
-    return ponteiroAdjacencia; 
+void libera_lista(No *lista) {
+    if (lista != NULL) {
+        libera_lista(lista->prox);
+        free(lista);
+    }
 }
 
-int insereAresta(Grafo* valorGrafo, int valorIncial, int valorFinal,int peso){
-    if(valorGrafo == NULL)
-    {
-        return false;
-    }
-    if(valorFinal < 0 || valorFinal >= valorGrafo->vertices){ 
-        return false;
-    }
-    if(valorIncial < 0 || valorIncial >= valorGrafo->vertices){ 
-        return false;
-    }
-    Adjacencia *nova = insereAdjacencia(valorFinal,peso);
-
-    nova->proximo = valorGrafo->ponteiroAdjacencia[valorIncial].noCabeca;  
-    valorGrafo->ponteiroAdjacencia[valorIncial].noCabeca = nova; 
-    valorGrafo->arestas++; 
+void destroi_grafo(Grafo g) {
+    int i;
+    for (i = 0; i < g.n; i++)
+        libera_lista(g.adjacencia[i]);
+    free(g.adjacencia);
 }
 
-void imprimiGrafo(Grafo *ponteiroGrafo){
-    if(ponteiroGrafo != NULL){
-        int i;
-        for(i = 0; i < ponteiroGrafo->vertices; i++){
-            printf("Valor %d | ",i); 
-            Adjacencia *adj = ponteiroGrafo->ponteiroAdjacencia[i].noCabeca;
-            while(adj != NULL){
-                printf("Valor %d | Peso %d | ",adj->vertice,adj->peso); 
-                adj = adj->proximo; 
-            }
-            printf("\n");
+No* insere_na_lista(No *lista, int v) {
+    No *novo = malloc(sizeof(No));
+    novo->v = v;
+    novo->prox = lista;
+    return novo;
+}
+
+void insere_aresta(Grafo g, int u, int v) {
+    g.adjacencia[v] = insere_na_lista(g.adjacencia[v], u);
+    g.adjacencia[u] = insere_na_lista(g.adjacencia[u], v);
+}
+
+No * remove_da_lista(No *lista, int v) {
+    No *proximo;
+    if (lista == NULL)
+        return NULL;
+    else if (lista->v == v) {
+        proximo = lista->prox;
+        free(lista);
+        return proximo;
+    } else {
+        lista->prox = remove_da_lista(lista->prox, v);
+        return lista;
+    }
+}
+
+void remove_aresta(Grafo g, int u, int v) {
+    g.adjacencia[u] = remove_da_lista(g.adjacencia[u], v);
+    g.adjacencia[v] = remove_da_lista(g.adjacencia[v], u);
+}
+
+int tem_aresta(Grafo g, int u, int v) {
+    No *t;
+    for (t = g.adjacencia[u]; t != NULL; t = t->prox) {
+        if (t->v == v)
+            return 1;
         }
+    return 0;
+}
+
+void imprime_arestas(Grafo g) {
+    int u;
+    No *t;
+    for (u = 0; u < g.n; u++) {
+        for (t = g.adjacencia[u]; t != NULL; t = t->prox)
+            printf("{%d,%d}\n", u, t->v);
     }
-    return false;
 }
 
 int main(){
-    Grafo *ponteiroGrafo = insereGrafo(5);
-    insereAresta(ponteiroGrafo,0,1,2);
-    insereAresta(ponteiroGrafo,1,2,4);
-    insereAresta(ponteiroGrafo,2,4,6);
-    insereAresta(ponteiroGrafo,3,1,8);
-    insereAresta(ponteiroGrafo,4,3,9);
-    imprimiGrafo(ponteiroGrafo);
+    Grafo *ponteiroGrafo = inicia_grafo;
+    inicia_grafo(ponteiroGrafo,0);
+    inicia_grafo(ponteiroGrafo,1);
+    inicia_grafo(ponteiroGrafo,4);
+    inicia_grafo(ponteiroGrafo,9);
+    inicia_grafo(ponteiroGrafo,7);
+    inicia_grafo(ponteiroGrafo,2);
 }
