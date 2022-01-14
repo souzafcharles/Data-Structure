@@ -16,7 +16,7 @@
 
 ## Subject Session Developed
 
-- Class 01: [ Subject Presentation, Stack and Queue](https://github.com/souzafcharles/Data-Structure/tree/master/Class_A1_Stack_Queue)
+- Class 01: [Stack and Queue](https://github.com/souzafcharles/Data-Structure/tree/master/Class_A1_Stack_Queue)
 - Class 02: [Linked List Part 01](https://github.com/souzafcharles/Data-Structure/tree/master/Class_B2_Linked_List)
 - Class 03: [Linked List Part 02](https://github.com/souzafcharles/Data-Structure/tree/master/Class_C3_Linked_List)
 - Class 04: [Linked List Part 03](https://github.com/souzafcharles/Data-Structure/tree/master/Class_D4_Linked_List)
